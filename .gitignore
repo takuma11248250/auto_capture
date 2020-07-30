@@ -1,0 +1,3 @@
+staticfiles
+auto_capture/local_settings.py
+db.sqlite3
