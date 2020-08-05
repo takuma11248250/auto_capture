@@ -4,8 +4,8 @@ block_cipher = None
 
 
 a = Analysis(['auto_capture.py'],
-             pathex=['C:\\Users\\takuma_kono\\OneDrive - 株式会社\u3000ＬＩＦＵＬＬ\u3000Ｍａｒｋｅｔｉｎｇ\u3000Ｐａｒｔｎｅｒｓ\\デスクトップ\\auto_capture'],
-             binaries=[('driver/chromedriver.exe', './driver')],
+             pathex=['C:\\Users\\takuma_kono\\develop\\auto_capture\\auto_capture_for_send'],
+             binaries=[('./driver/chromedriver.exe', './driver')],
              datas=[],
              hiddenimports=[],
              hookspath=[],
