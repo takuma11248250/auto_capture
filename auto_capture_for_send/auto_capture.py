@@ -7,12 +7,8 @@ import csv
 
 #------------------ディレクトリ作成------------------
 cur_dir = os.getcwd()
-sitecapture_dir = os.getenv("USERPROFILE") + "\\Desktop\\" + "サイトキャプチャーフォルダ"
-sitecapture_dir2 = os.getenv("USERPROFILE") + "\\OneDrive - 株式会社　ＬＩＦＵＬＬ　Ｍａｒｋｅｔｉｎｇ　Ｐａｒｔｎｅｒｓ\\デスクトップ\\" + "サイトキャプチャーフォルダ"
-if os.path.isdir(os.getenv("USERPROFILE") + "\\Desktop") == True:
-	os.makedirs(sitecapture_dir, exist_ok=True)
-elif os.path.isdir(os.getenv("USERPROFILE") + "\\OneDrive - 株式会社　ＬＩＦＵＬＬ　Ｍａｒｋｅｔｉｎｇ　Ｐａｒｔｎｅｒｓ\\デスクトップ") == True:
-	os.makedirs(sitecapture_dir2, exist_ok=True)
+sitecapture_dir = os.getenv("HOME") + "/Desktop/" + "サイトキャプチャーフォルダ"
+os.makedirs(sitecapture_dir, exist_ok=True)
 #------------------------------------------------
 def resource_path(relative_path):
     try:
@@ -26,7 +22,7 @@ def get_capture():
 	options.add_argument('--headless')
 	options.add_argument('--no-sandbox')
 	options.add_argument('--disable-dev-shm-usage')
-	driver = webdriver.Chrome(resource_path('./driver/chromedriver.exe'), chrome_options=options)
+	driver = webdriver.Chrome(resource_path('./driver/chromedriver'), chrome_options=options)
 
 	url_list_file = open(cur_dir + "/utl_list.csv")
 	reader = csv.reader(url_list_file)
@@ -57,9 +53,6 @@ def get_capture():
 		page_width = driver.execute_script('return document.body.scrollWidth')
 		page_height = driver.execute_script('return document.body.scrollHeight')
 		driver.set_window_size(page_width, page_height)
-		if os.path.isdir(sitecapture_dir) == True:
-			driver.save_screenshot(sitecapture_dir + "\\" + str(number) + "_" + title  + ".jpg")
-		elif os.path.isdir(sitecapture_dir2) == True:
-			driver.save_screenshot(sitecapture_dir2 + "\\"+ str(number) + "_" + title + ".jpg")
+		driver.save_screenshot(sitecapture_dir + "/" + str(number) + "_" + title  + ".jpg")
 		number += 1
 get_capture()
